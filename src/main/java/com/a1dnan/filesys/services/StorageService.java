@@ -2,10 +2,8 @@ package com.a1dnan.filesys.services;
 
 import com.a1dnan.filesys.entities.FileData;
 import com.a1dnan.filesys.repositories.FileDataRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.jndi.JndiLookupFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
