@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,7 +49,7 @@ public class StorageService {
                 .name(file.getOriginalFilename())
                 .type(file.getContentType())
                 .filePath(filePath)
-                .url(url)
+                .urlFile(url)
                 .build()
         );
 
@@ -65,6 +66,10 @@ public class StorageService {
 
     public List<FileData> getAllFiles(){
         return fileDataRepository.findAll();
+    }
+
+    public void delete(long id){
+        fileDataRepository.deleteById(id);
     }
 
 
