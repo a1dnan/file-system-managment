@@ -14,8 +14,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class StorageService {
@@ -50,6 +53,7 @@ public class StorageService {
                 .type(file.getContentType())
                 .filePath(filePath)
                 .urlFile(url)
+                .uploadedAt(LocalDateTime.now())
                 .build()
         );
 
@@ -65,7 +69,10 @@ public class StorageService {
     }
 
     public List<FileData> getAllFiles(){
-        return fileDataRepository.findAll();
+        //To sort Files in descending order by uploading date
+        return fileDataRepository.findAll().stream()
+                .sorted(Comparator.comparing(FileData::getUploadedAt).reversed())
+                .collect(Collectors.toList());
     }
 
     public void delete(long id){
