@@ -12,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.IOException;
 import java.util.List;
@@ -50,6 +49,12 @@ public class FileController {
     public ResponseEntity<List<FileData>> getAllFiles(){
         return ResponseEntity.status(HttpStatus.OK)
                 .body(service.getAllFiles());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable long id){
+        service.delete(id);
+        return ResponseEntity.accepted().build();
     }
 
 
